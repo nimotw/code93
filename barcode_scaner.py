@@ -21,7 +21,7 @@ while True:
     # grab the frame from the threaded video stream and resize it to
     # have a maximum width of 400 pixels
     frame = vs.read()
-    frame = imutils.resize(frame, width=400)
+    frame = imutils.resize(frame, width=600)
 
     # find the barcodes in the frame and decode each of the barcodes
     barcodes = pyzbar.decode(frame)
@@ -48,8 +48,8 @@ while True:
             playsound('./mixkit-angry-cartoon-kitty-meow-94.wav')
 
     # draw the barcode data and barcode type on the image
-    cv2.putText(frame, lastbarcode, (0, 28),
-        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+    cv2.putText(frame, lastbarcode, (0, 26),
+        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
    
     # show the output frame
     cv2.imshow("Barcode Scanner", frame)
