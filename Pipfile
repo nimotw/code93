@@ -8,6 +8,7 @@ opencv-python = "==3.4.16.59"
 pyzbar = "*"
 imutils = "*"
 pydub = "*"
+pygame = "*"
 
 [dev-packages]
 
