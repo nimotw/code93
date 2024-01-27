@@ -45,7 +45,11 @@ while True:
 
         if barcodeData != lastbarcode:
             lastbarcode = barcodeData
-            playsound('./mixkit-angry-cartoon-kitty-meow-94.wav')
+            #playsound('./mixkit-angry-cartoon-kitty-meow-94.wav')
+            if barcodeType.lower() == 'qrcode':
+                playsound('./cat.wav')
+            else:
+                playsound('./good.m4a')
 
     # draw the barcode data and barcode type on the image
     cv2.putText(frame, lastbarcode, (0, 26),
