@@ -9,6 +9,8 @@ pyzbar = "*"
 imutils = "*"
 pip = "*"
 install = "*"
+playsound = "*"
+pyobjc = "*"
 
 [dev-packages]
 
