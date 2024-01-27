@@ -7,8 +7,8 @@ name = "pypi"
 opencv-python = "==3.4.16.59"
 pyzbar = "*"
 imutils = "*"
-pydub = "*"
-pygame = "*"
+pip = "*"
+install = "*"
 
 [dev-packages]
 
