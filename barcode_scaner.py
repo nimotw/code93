@@ -7,6 +7,16 @@ import imutils
 import time
 import cv2
 from playsound import playsound
+from PIL import Image, ImageDraw,ImageFont 
+import numpy
+
+def cv2ImgAddText(img, text, left, top, textColor=(0, 255, 0), textSize=20):
+    if (isinstance(img, numpy.ndarray)):  #判断是否OpenCV图片类型
+        img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    draw = ImageDraw.Draw(img)
+    fontText = ImageFont.truetype("simhei.ttf", textSize, encoding="utf-8")
+    draw.text((left, top), text, textColor, font=fontText)
+    return cv2.cvtColor(numpy.asarray(img), cv2.COLOR_RGB2BGR)
 
 # initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting video stream...")
@@ -35,17 +45,16 @@ while True:
 
         # the barcode data is a bytes object so if we want to draw it
         # on our output image we need to convert it to a string first
-        barcodeData = barcode.data.decode("utf-8")
+        barcodeData = barcode.data.decode("utf8")
         barcodeType = barcode.type
 
         # draw the barcode data and barcode type on the image
         text = "{} ({})".format(barcodeData, barcodeType)
-        cv2.putText(frame, text, (x, y - 10),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
+        frame = cv2ImgAddText(frame, text, x, y - 22, (255, 0, 0), 20)
 
         if barcodeData != lastbarcode:
             lastbarcode = barcodeData
-            #playsound('./mixkit-angry-cartoon-kitty-meow-94.wav')
+
             if barcodeType.lower() == 'qrcode':
                 playsound('./cat.wav')
             elif barcodeType.lower() == 'code93':
@@ -59,8 +68,7 @@ while True:
                 playsound('./bird.wav')
 
     # draw the barcode data and barcode type on the image
-    cv2.putText(frame, lastbarcode, (0, 26),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
+    frame = cv2ImgAddText(frame, lastbarcode, 0, 0, (255, 0, 255), 36)
    
     # show the output frame
     cv2.imshow("Barcode Scanner", frame)
