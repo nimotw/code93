@@ -56,7 +56,7 @@ while True:
             lastbarcode = barcodeData
 
             if barcodeType.lower() == 'qrcode':
-                playsound('./cat.wav')
+                playsound('./pain.wav')
             elif barcodeType.lower() == 'code93':
                 if (y % 3)  == 0:
                     playsound('./你好棒.m4a')
@@ -65,7 +65,7 @@ while True:
                 else:
                     playsound('./加油加油.m4a')
             else:
-                playsound('./bird.wav')
+                playsound('./cat.wav')
 
     # draw the barcode data and barcode type on the image
     frame = cv2ImgAddText(frame, lastbarcode, 0, 0, (255, 0, 255), 36)
