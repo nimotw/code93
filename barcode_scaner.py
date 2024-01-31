@@ -58,12 +58,14 @@ while True:
             if barcodeType.lower() == 'qrcode':
                 playsound('./pain.wav')
             elif barcodeType.lower() == 'code93':
-                if (y % 3)  == 0:
-                    playsound('./你好棒.m4a')
-                elif (y % 3) == 1:
-                    playsound('./好棒好棒.m4a')
-                else:
+                if len(barcodeData) == 1:
                     playsound('./加油加油.m4a')
+                elif (y % 3)  == 0:
+                    playsound('./你好棒.m4a')
+                elif (y % 3)  == 1:
+                    playsound('./厲害唷.m4a')
+                else: 
+                    playsound('./好棒好棒.m4a')
             else:
                 playsound('./cat.wav')
 
